@@ -1,7 +1,7 @@
 import React, { ClassAttributes, ReactElement } from "react";
 
 function About(props: ClassAttributes<any>): ReactElement {
-  console.log(props)
+  console.log(props);
   return <div>about</div>;
 }
 

@@ -6,6 +6,7 @@ import App from "./App";
 import About from "./About";
 
 function RootRoute() {
+  
   return (
     <BrowserRouter>
       <Switch>
