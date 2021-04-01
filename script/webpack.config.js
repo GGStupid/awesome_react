@@ -7,7 +7,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, "../dist"),
   },
-  devtool: "inline-source-map",
+  devtool: "source-map",
   module: {
     rules: [
       {
@@ -44,13 +44,14 @@ module.exports = {
     ],
   },
   stats: {
-    colors: true,
-    modules: true,
-    children: true,
-    chunks: false,
-    chunkModules: false,
+    assets: true,
+    assetsSort: "size",
+    builtAt: true,
   },
   resolve: {
+    alias: {
+      "@src": path.resolve(__dirname, "../src"),
+    },
     extensions: [".tsx", ".ts", ".js", ".json"],
   },
   devServer: {

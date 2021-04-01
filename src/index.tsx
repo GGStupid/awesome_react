@@ -2,11 +2,10 @@ import ReactDom from "react-dom";
 import React from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 
-import App from "./App";
-import About from "./About";
+import App from "@src/App";
+import About from "@src/App";
 
 function RootRoute() {
-  
   return (
     <BrowserRouter>
       <Switch>
