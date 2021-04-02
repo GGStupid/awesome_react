@@ -64,7 +64,6 @@ module.exports = {
   },
   devServer: {
     port: 8080,
-    inline: true,
     stats: "errors-only",
     contentBase: path.resolve(__dirname, "dist"),
     hot: true,
