@@ -67,7 +67,6 @@ module.exports = {
     stats: "errors-only",
     contentBase: path.resolve(__dirname, "dist"),
     hot: true,
-    historyApiFallback: true,
     proxy: {
       "/api": {
         target: "http://localhost:3004",
