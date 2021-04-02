@@ -68,7 +68,6 @@ module.exports = {
     contentBase: path.resolve(__dirname, "dist"),
     hot: true,
     historyApiFallback: true,
-    compress: true,
     proxy: {
       "/api": {
         target: "http://localhost:3004",
