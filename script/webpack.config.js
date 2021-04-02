@@ -63,7 +63,7 @@ module.exports = {
     extensions: [".tsx", ".ts", ".js", ".json"],
   },
   devServer: {
-    port: 8080,
+    port: 7000,
     stats: "errors-only",
     contentBase: path.resolve(__dirname, "dist"),
     hot: true,
