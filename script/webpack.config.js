@@ -52,22 +52,32 @@ module.exports = {
     alias: {
       "@src": path.resolve(__dirname, "../src"),
       "@assets": path.resolve(__dirname, "../src/assets"),
+      "@common": path.resolve(__dirname, "../src/common"),
       "@components": path.resolve(__dirname, "../src/components"),
       "@middlewares": path.resolve(__dirname, "../src/middlewares"),
       "@pages": path.resolve(__dirname, "../src/pages"),
       "@router": path.resolve(__dirname, "../src/router"),
       "@services": path.resolve(__dirname, "../src/services"),
       "@store": path.resolve(__dirname, "../src/store"),
-      "@utils": path.resolve(__dirname, "../src/utils"),
     },
     extensions: [".tsx", ".ts", ".js", ".json"],
   },
   devServer: {
+    host: "0.0.0.0",
+    port: 8080,
+    https: true,
+    inline: true,
     stats: "errors-only",
     contentBase: path.resolve(__dirname, "dist"),
     hot: true,
     historyApiFallback: true,
     compress: true,
+    proxy: {
+      "/api": {
+        target: "http://localhost:3004",
+        pathRewrite: { "^/api": "" },
+      },
+    },
   },
   plugins: [
     new CleanWebpackPlugin(),
