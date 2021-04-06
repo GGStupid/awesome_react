@@ -1,13 +1,13 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
 module.exports = {
   entry: "./src/index.tsx",
   output: {
+    filename: "[name].bundle.js",
     path: path.resolve(__dirname, "../dist"),
+    clean: true,
   },
-  devtool: "source-map",
   module: {
     rules: [
       {
@@ -43,11 +43,6 @@ module.exports = {
       },
     ],
   },
-  stats: {
-    assets: true,
-    assetsSort: "size",
-    builtAt: true,
-  },
   resolve: {
     alias: {
       "@src": path.resolve(__dirname, "../src"),
@@ -62,20 +57,7 @@ module.exports = {
     },
     extensions: [".tsx", ".ts", ".js", ".json"],
   },
-  devServer: {
-    port: 7000,
-    stats: "errors-only",
-    contentBase: path.resolve(__dirname, "dist"),
-    hot: true,
-    proxy: {
-      "/api": {
-        target: "http://localhost:3004",
-        pathRewrite: { "^/api": "" },
-      },
-    },
-  },
   plugins: [
-    new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       title: "awesome react",
       template: "public/index.html",
