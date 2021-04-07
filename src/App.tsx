@@ -1,17 +1,26 @@
 import React from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { Provider } from "react-redux";
 
-import Home from "@pages/Home";
-import About from "@pages/About";
+import ErrorBoundary from "@pages/Error";
+import "@assets/css/main.css";
+import store from "@store/index";
+import Login from "@src/pages/Login";
+import Home from "@src/pages/Home";
+
 
 function App() {
   return (
-    <BrowserRouter>
-      <Switch>
-        <Route exact path="/" component={Home}></Route>
-        <Route exact path="/about" component={About}></Route>
-      </Switch>
-    </BrowserRouter>
+    <Provider store={store}>
+      <BrowserRouter>
+        <ErrorBoundary>
+          <Switch>
+            <Route exact path="/login" component={Login}></Route>
+            <Route exact path="/" component={Home}></Route>
+          </Switch>
+        </ErrorBoundary>
+      </BrowserRouter>
+    </Provider>
   );
 }
 

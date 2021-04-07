@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { AxiosRequestConfig } from "axios";
 
 const baseURL = "/api/";
 
@@ -33,4 +33,19 @@ axiosInstance.interceptors.response.use(
   },
 );
 
-export default axiosInstance;
+class httpClient {
+  delete<T>(url: string, params?: AxiosRequestConfig): Promise<T> {
+    return axiosInstance.delete(url, params);
+  }
+  put<T>(url: string, params?: AxiosRequestConfig): Promise<T> {
+    return axiosInstance.put(url, params);
+  }
+  get<T>(url: string, params?: AxiosRequestConfig): Promise<T> {
+    return axiosInstance.get(url, params);
+  }
+  post<T>(url: string, params?: AxiosRequestConfig): Promise<T> {
+    return axiosInstance.post(url, params);
+  }
+}
+
+export default new httpClient();

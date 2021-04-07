@@ -1,7 +1,10 @@
-import axiosInstance from "@common/axiosInstance";
-import { AxiosResponse } from "axios";
+import httpClient from "@src/common/httpClient";
 
-export async function userRegister(): Promise<AxiosResponse<unknown>> {
-  const res = await axiosInstance.post("/user/register");
+interface IUser {
+  userName: string;
+}
+
+export async function userRegister(): Promise<IUser> {
+  const res = await httpClient.post<IUser>("/user/register");
   return res;
 }
