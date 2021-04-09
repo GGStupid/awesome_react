@@ -60,6 +60,7 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       title: "awesome react",
+      favicon: "public/favicon.ico",
       template: "public/index.html",
     }),
   ],
