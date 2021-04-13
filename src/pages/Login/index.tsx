@@ -21,7 +21,7 @@ import {
 } from "@material-ui/core";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
-import { Copyright } from "@material-ui/icons";
+import { Copyright } from "@src/components/Copyright";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -130,12 +130,12 @@ function Login(): ReactElement {
             </Button>
             <Grid container>
               <Grid item xs>
-                <Link href="#" variant="body2">
+                <Link href="/register" variant="body2">
                   忘记密码
                 </Link>
               </Grid>
               <Grid item>
-                <Link href="#" variant="body2">
+                <Link href="/register" variant="body2">
                   注册
                 </Link>
               </Grid>

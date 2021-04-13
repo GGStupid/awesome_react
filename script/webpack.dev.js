@@ -10,6 +10,7 @@ module.exports = merge(common, {
     stats: "errors-only",
     contentBase: path.resolve(__dirname, "dist"),
     hot: true,
+    inline: true,
     historyApiFallback: true,
     proxy: {
       "/api": {

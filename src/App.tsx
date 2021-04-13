@@ -1,24 +1,18 @@
 import React from "react";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
+import { renderRoutes } from "react-router-config";
 
 import ErrorBoundary from "@pages/Error";
 import "@assets/css/main.css";
+import routes from "@router/index";
 import store from "@store/index";
-import Login from "@src/pages/Login";
-import Home from "@src/pages/Home";
-
 
 function App() {
   return (
     <Provider store={store}>
       <BrowserRouter>
-        <ErrorBoundary>
-          <Switch>
-            <Route exact path="/login" component={Login}></Route>
-            <Route exact path="/" component={Home}></Route>
-          </Switch>
-        </ErrorBoundary>
+        <ErrorBoundary>{renderRoutes(routes)}</ErrorBoundary>
       </BrowserRouter>
     </Provider>
   );
