@@ -91,7 +91,7 @@ function Login(): ReactElement {
               required
               fullWidth
               id="username"
-              label="账号邮箱"
+              label="用户名"
               name="username"
               value={userName}
               onChange={(e: ChangeEvent<HTMLInputElement>) =>
