@@ -30,17 +30,22 @@ axiosInstance.interceptors.response.use(
   },
 );
 
+interface IData<T> {
+  success: boolean;
+  data: T;
+}
+
 class httpClient {
-  delete<T>(url: string, data?: T): Promise<T> {
+  delete<T>(url: string, data?: any): Promise<IData<T>> {
     return axiosInstance.delete(url, { params: data });
   }
-  put<T>(url: string, data?: T): Promise<T> {
+  put<T>(url: string, data?: any): Promise<IData<T>> {
     return axiosInstance.put(url, data);
   }
-  get<T>(url: string, data?: T): Promise<T> {
+  get<T>(url: string, data?: any): Promise<IData<T>> {
     return axiosInstance.get(url, { params: data });
   }
-  post<T>(url: string, data?: T): Promise<T> {
+  post<T>(url: string, data?: any): Promise<IData<T>> {
     return axiosInstance.post(url, data);
   }
 }

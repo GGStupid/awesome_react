@@ -11,9 +11,7 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import { Copyright } from "@src/components/Copyright";
-import {
-  useFormik,
-} from "formik";
+import { useFormik } from "formik";
 import { isEmail } from "@src/common/validate";
 import { IUser, userRegister } from "@src/services/userServices";
 
@@ -62,16 +60,14 @@ const handleValidate = (values: userForm) => {
   } else if (!isEmail(values.email)) {
     errors.email = "邮箱不正确";
   }
-  console.log(errors);
   return errors;
 };
 
 export default function SignUp() {
   const classes = useStyles();
 
-  const handleSubmit = (values: IUser) => {
-    console.log(values);
-    userRegister(values);
+  const handleSubmit = async (values: IUser) => {
+    await userRegister(values);
   };
 
   const formik = useFormik({

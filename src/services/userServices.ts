@@ -1,16 +1,19 @@
 import httpClient from "@src/common/httpClient";
 
-export interface IUser {
+export interface IRegister {
   userName: string;
   password: string;
   email: string;
 }
 
-export async function userLogin(data: IUser): Promise<IUser> {
-  const res = await httpClient.post<IUser>("/user/login", data);
+type UserLogin = Omit<IRegister, "email">;
+
+export async function userLogin(data: UserLogin) {
+  const res = await httpClient.post<UserLogin>("/user/login", data);
   return res;
 }
-export async function userRegister(data: IUser): Promise<IUser> {
-  const res = await httpClient.post<IUser>("/user/register", data);
+
+export async function userRegister(data: IRegister) {
+  const res = await httpClient.post<IRegister>("/user/register", data);
   return res;
 }
