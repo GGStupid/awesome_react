@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React from "react";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -11,9 +11,10 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import { Copyright } from "@src/components/Copyright";
-import { useFormik } from "formik";
+import { FormikHelpers, useFormik } from "formik";
 import { isEmail } from "@src/common/validate";
-import { IUser, userRegister } from "@src/services/userServices";
+import { IRegister, userRegister } from "@src/services/userServices";
+import Toast from "@src/components/Toast";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -66,8 +67,15 @@ const handleValidate = (values: userForm) => {
 export default function SignUp() {
   const classes = useStyles();
 
-  const handleSubmit = async (values: IUser) => {
-    await userRegister(values);
+  const handleSubmit = async (
+    values: IRegister,
+    formikHelpers: FormikHelpers<IRegister>,
+  ) => {
+    const data = await userRegister(values);
+    if (data.success) {
+      Toast.success("注册成功");
+      formikHelpers.resetForm();
+    }
   };
 
   const formik = useFormik({
