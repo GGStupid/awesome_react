@@ -22,6 +22,8 @@ import {
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import { Copyright } from "@src/components/Copyright";
+import Toast from "@src/components/Toast";
+import { useHistory } from "react-router";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -60,16 +62,22 @@ const useStyles = makeStyles((theme: Theme) =>
 
 function Login(): ReactElement {
   const classes = useStyles();
+  const histroy = useHistory();
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleLogin = (e: FormEvent<HTMLFormElement>) => {
+  const handleLogin = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     let params = {
       userName,
       password,
     };
-    userLogin(params);
+    const data = await userLogin(params);
+    console.log(data);
+    if (data.success) {
+      Toast.success("注册成功");
+      histroy.push("/");
+    }
   };
 
   return (

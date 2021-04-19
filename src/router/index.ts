@@ -6,7 +6,7 @@ const routes = [
   {
     path: "/",
     exact: true,
-    compoent: Home,
+    component: Home,
   },
   {
     path: "/login",

@@ -10,11 +10,11 @@ import store from "@store/index";
 
 function App() {
   return (
-    <Provider store={store}>
-      <BrowserRouter>
-        <ErrorBoundary>{renderRoutes(routes)}</ErrorBoundary>
-      </BrowserRouter>
-    </Provider>
+    <ErrorBoundary>
+      <Provider store={store}>
+        <BrowserRouter>{renderRoutes(routes)}</BrowserRouter>
+      </Provider>
+    </ErrorBoundary>
   );
 }
 
