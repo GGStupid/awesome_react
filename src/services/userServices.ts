@@ -1,24 +1,18 @@
 import httpClient from "@src/common/httpClient";
-
-export interface IRegister {
-  userName: string;
-  password: string;
-  email: string;
-}
-
-type UserLogin = Omit<IRegister, "email">;
+import { UserModel } from "@src/store/user";
+import { IRegister, UserLogin } from "@src/store/user/type";
 
 export async function userLogin(data: UserLogin) {
-  const res = await httpClient.post<UserLogin>("/auth/login", data);
+  const res = await httpClient.post<UserModel>("/auth/login", data);
   return res;
 }
 
 export async function userRegister(data: IRegister) {
-  const res = await httpClient.post<IRegister>("/auth/register", data);
+  const res = await httpClient.post<UserModel>("/auth/register", data);
   return res;
 }
 
 export async function userLogout(data: IRegister) {
-  const res = await httpClient.post<IRegister>("/auth/logout", data);
+  const res = await httpClient.post<null>("/auth/logout", data);
   return res;
 }

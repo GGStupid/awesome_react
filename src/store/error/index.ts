@@ -1,3 +1,5 @@
+import produce from "immer";
+
 export interface ErrorModel {
   isError: boolean;
   errorType: string;
@@ -16,12 +18,15 @@ export const errorModel: ErrorModel = {
 
 export const errorReducer = (
   state = errorModel,
-  action: { type: any; paload: any },
+  action: { type: any; payload: any },
 ) => {
-  switch (action.type) {
-    case errorAction.ERROR_ACTION:
-      return (state = action.paload);
-    default:
-      return state;
-  }
+  return produce(state, (draft) => {
+    switch (action.type) {
+      case errorAction.ERROR_ACTION:
+        draft.isError = true;
+        draft.errorType = action.payload;
+        draft.errorInfo = action.payload;
+        break;
+    }
+  });
 };

@@ -2,7 +2,6 @@ import React from "react";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { IRootSate } from "@store/root";
-import { startAction } from "@store/user";
 
 function Home() {
   const histroy = useHistory();
@@ -10,10 +9,8 @@ function Home() {
   const { userModel } = useSelector((state: IRootSate) => state);
 
   const handleBack = () => histroy.replace("/login");
-  const handlePing = () => {
-    dispatch(startAction("123123"));
-  };
-  
+  const handlePing = () => {};
+
   return (
     <div>
       <div onClick={handleBack}>loginout</div>

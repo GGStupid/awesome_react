@@ -1,11 +1,5 @@
-import React, {
-  ChangeEvent,
-  FormEvent,
-  ReactElement,
-  useEffect,
-  useState,
-} from "react";
-import { userLogin, userRegister } from "@services/userServices";
+import React, { ChangeEvent, FormEvent, ReactElement, useState } from "react";
+import { userLogin } from "@services/userServices";
 import {
   Avatar,
   Box,
@@ -24,6 +18,8 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import { Copyright } from "@src/components/Copyright";
 import Toast from "@src/components/Toast";
 import { useHistory } from "react-router";
+import { useDispatch } from "react-redux";
+import { initUserAction } from "@src/store/user";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -62,6 +58,7 @@ const useStyles = makeStyles((theme: Theme) =>
 
 function Login(): ReactElement {
   const classes = useStyles();
+  const dispatch = useDispatch();
   const histroy = useHistory();
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
@@ -73,9 +70,9 @@ function Login(): ReactElement {
       password,
     };
     const data = await userLogin(params);
-    console.log(data);
     if (data.success) {
-      Toast.success("注册成功");
+      dispatch(initUserAction(data.data));
+      Toast.success("登录成功");
       histroy.push("/");
     }
   };

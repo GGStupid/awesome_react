@@ -1,55 +1,50 @@
 import { Epic, ofType } from "redux-observable";
-import { delay, map } from "rxjs/operators";
+import { filter, map, switchMap } from "rxjs/operators";
+import produce from "immer";
+import { from } from "rxjs";
+import { IRootSate } from "../root";
+import { isOfType } from "typesafe-actions";
+import { InitUserModel, LoginModel } from "./type";
 
-export interface UserModel {
-  userName: string;
-  phone: string;
-}
-
-const START = "START";
-const USERNAME = "USERNAME";
-
-interface UserAction {
-  type: typeof USERNAME;
-  payload: string;
-}
-
-interface StartAction {
-  type: typeof START;
-  payload: string;
-}
-
-export const userAction = (username: string): UserAction => ({
-  type: USERNAME,
-  payload: username,
-});
-
-export const startAction = (username: string): StartAction => ({
-  type: START,
-  payload: username,
-});
-
-export type Actions = UserAction | StartAction;
-
-export const userModel: UserModel = {
+export const userModel: InitUserModel = {
+  id: "",
   userName: "",
-  phone: "",
+  email: "",
 };
+
+const lOGIN_ACTION = "LOGIN_ACTION";
+
+export const loginAction = (data: LoginModel) => {
+  return <const>{ type: lOGIN_ACTION, payload: data };
+};
+
+const INIT_USER_ACTION = "INIT_USER_ACTION";
+
+export const initUserAction = (data: InitUserModel) => {
+  return <const>{ type: INIT_USER_ACTION, payload: data };
+};
+
+type Actions =
+  | ReturnType<typeof loginAction>
+  | ReturnType<typeof initUserAction>;
 
 export const userReducer = (state = userModel, action: Actions) => {
-  switch (action.type) {
-    case "USERNAME":
-      return { userName: action.payload };
-
-    default:
-      return state;
-  }
+  return produce(state, (draft) => {
+    switch (action.type) {
+      case INIT_USER_ACTION:
+        draft.id = action.payload.id;
+        draft.userName = action.payload.userName;
+        draft.email = action.payload.email;
+        break;
+    }
+  });
 };
 
-export const userEpic: Epic<Actions, UserAction> = (action$) => {
+export const userEpic: Epic<Actions, Actions, IRootSate> = (action$) => {
   return action$.pipe(
-    ofType("START"),
-    delay(1000),
-    map((res) => userAction(res.payload)),
+    filter(isOfType(lOGIN_ACTION)),
+    switchMap((action) =>
+      from(userLogin(action.payload)).pipe(map((r) => initUserAction(r.data))),
+    ),
   );
 };
