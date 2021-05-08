@@ -5,7 +5,7 @@ export interface UserModel {
   password: string;
 }
 
-export type InitUserModel = Omit<UserModel, "password">;
+export type LoginUserModel = Omit<UserModel, "password">;
 
 export type RegisterModel = Omit<UserModel, "id">;
 

@@ -1,18 +1,17 @@
 import httpClient from "@src/common/httpClient";
-import { UserModel } from "@src/store/user";
-import { IRegister, UserLogin } from "@src/store/user/type";
+import { LoginUserModel, LoginModel, RegisterModel } from "@src/store/user/type";
 
-export async function userLogin(data: UserLogin) {
-  const res = await httpClient.post<UserModel>("/auth/login", data);
+export async function userLogin(data: LoginModel) {
+  const res = await httpClient.post<LoginUserModel>("/auth/login", data);
   return res;
 }
 
-export async function userRegister(data: IRegister) {
-  const res = await httpClient.post<UserModel>("/auth/register", data);
+export async function userRegister(data: RegisterModel) {
+  const res = await httpClient.post<LoginUserModel>("/auth/register", data);
   return res;
 }
 
-export async function userLogout(data: IRegister) {
+export async function userLogout(data: RegisterModel) {
   const res = await httpClient.post<null>("/auth/logout", data);
   return res;
 }

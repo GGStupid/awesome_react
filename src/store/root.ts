@@ -3,7 +3,9 @@ import { combineReducers } from "redux";
 import { catchError } from "rxjs/operators";
 
 import { errorReducer, errorModel } from "./error";
-import { userEpic, userModel, userReducer } from "./user";
+import { userEpic } from "./user/epic";
+import { userModel, userReducer } from "./user/reducer";
+// import { userEpic, userModel, userReducer } from "./user";
 
 const epics = [userEpic];
 

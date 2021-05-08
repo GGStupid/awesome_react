@@ -19,7 +19,7 @@ import { Copyright } from "@src/components/Copyright";
 import Toast from "@src/components/Toast";
 import { useHistory } from "react-router";
 import { useDispatch } from "react-redux";
-import { initUserAction } from "@src/store/user";
+import { initUserAction } from "@src/store/user/actions";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
