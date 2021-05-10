@@ -1,6 +1,5 @@
 import produce from "immer";
-import { Actions, INIT_USER_ACTION } from "./actions";
-import { LoginUserModel } from "./type";
+import { Actions, INIT_USER_ACTION, LoginUserModel } from ".";
 
 export const userModel: LoginUserModel = {
   id: "",

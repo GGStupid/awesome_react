@@ -1,5 +1,5 @@
 import { action, ActionType } from "typesafe-actions";
-import { LoginUserModel, LoginModel } from "./type";
+import { LoginUserModel, LoginModel } from "./types";
 
 export const lOGIN_ACTION = "LOGIN_ACTION";
 export const INIT_USER_ACTION = "INIT_USER_ACTION";

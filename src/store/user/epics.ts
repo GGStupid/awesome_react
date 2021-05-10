@@ -4,7 +4,7 @@ import { from, throwError } from "rxjs";
 import { catchError, filter, map, switchMap } from "rxjs/operators";
 import { isOfType } from "typesafe-actions";
 import { IRootSate } from "@store/root";
-import { Actions, initUserAction, lOGIN_ACTION } from "./actions";
+import { Actions, initUserAction, lOGIN_ACTION } from ".";
 
 export const userEpic: Epic<Actions, Actions, IRootSate> = (action$) => {
   return action$.pipe(

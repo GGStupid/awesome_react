@@ -1,5 +1,5 @@
 import httpClient from "@src/common/httpClient";
-import { LoginUserModel, LoginModel, RegisterModel } from "@src/store/user/type";
+import { LoginModel, LoginUserModel, RegisterModel } from "@src/store/user";
 
 export async function userLogin(data: LoginModel) {
   const res = await httpClient.post<LoginUserModel>("/auth/login", data);
@@ -11,7 +11,12 @@ export async function userRegister(data: RegisterModel) {
   return res;
 }
 
-export async function userLogout(data: RegisterModel) {
-  const res = await httpClient.post<null>("/auth/logout", data);
+export async function userInfoGet() {
+  const res = await httpClient.get<LoginUserModel>("/auth/info");
+  return res;
+}
+
+export async function userLogout() {
+  const res = await httpClient.post<null>("/auth/logout");
   return res;
 }
