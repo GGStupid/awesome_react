@@ -16,6 +16,11 @@ export async function userInfoGet() {
   return res;
 }
 
+export async function userTokenRefresh() {
+  const res = await httpClient.get<null>("/auth/refresh");
+  return res;
+}
+
 export async function userLogout() {
   const res = await httpClient.post<null>("/auth/logout");
   return res;

@@ -52,17 +52,9 @@ class HttpClient {
             throw response;
           }
 
-          if (!response.data.success) {
-            console.log(!response.data.success, response.data);
-            Toast.warning(response.data.message);
-            // Promise.reject(response.data);
-            throw new Error(response.data.message);
-          }
-
           return response.data;
         },
         (error) => {
-          console.log(">>>>>>", error);
           Toast.error(error.message || "出错了，请稍后再试");
           return Promise.reject(error);
         },

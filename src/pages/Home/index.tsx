@@ -2,7 +2,11 @@ import React, { useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { IRootSate } from "@store/root";
-import { userInfoGet, userLogout } from "@src/services/userServices";
+import {
+  userInfoGet,
+  userLogout,
+  userTokenRefresh,
+} from "@src/services/userServices";
 
 function Home() {
   const histroy = useHistory();
@@ -15,8 +19,16 @@ function Home() {
 
     histroy.replace("/login");
   };
+  const handleRefresh = async () => {
+    const res = await userTokenRefresh();
+    console.log(res);
+  };
   useEffect(() => {
-    userInfoGet().then((res) => console.log(res));
+    userInfoGet()
+      .then((res) => console.log(res))
+      .catch((err) => {
+        console.log(",,,,", err);
+      });
     return () => {};
   }, []);
 
@@ -25,6 +37,7 @@ function Home() {
       <button onClick={handleLogout}>退出</button>
       <div>Home</div>
       <div>{userModel?.userName}</div>
+      <button onClick={handleRefresh}>刷新token</button>
     </div>
   );
 }
