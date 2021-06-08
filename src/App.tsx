@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import { renderRoutes } from "react-router-config";
@@ -11,9 +11,11 @@ import store from "@store/index";
 function App() {
   return (
     <ErrorBoundary>
-      <Provider store={store}>
-        <BrowserRouter>{renderRoutes(routes)}</BrowserRouter>
-      </Provider>
+      <Suspense fallback={<div className="full_loading">加载中……</div>}>
+        <Provider store={store}>
+          <BrowserRouter>{renderRoutes(routes)}</BrowserRouter>
+        </Provider>
+      </Suspense>
     </ErrorBoundary>
   );
 }

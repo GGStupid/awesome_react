@@ -1,20 +1,22 @@
-import Home from "@src/pages/Home";
-import Login from "@src/pages/Login";
-import Register from "@src/pages/Register";
+import { lazy } from "react";
+
+const HomePage = lazy(() => import("@src/pages/Home"));
+const LoginPage = lazy(() => import("@src/pages/Login"));
+const RegisterPage = lazy(() => import("@src/pages/Register"));
 
 const routes = [
   {
     path: "/",
     exact: true,
-    component: Home,
+    component: HomePage,
   },
   {
     path: "/login",
-    component: Login,
+    component: LoginPage,
   },
   {
     path: "/register",
-    component: Register,
+    component: RegisterPage,
   },
 ];
 
