@@ -1,8 +1,12 @@
 import { lazy } from "react";
 
-const HomePage = lazy(() => import("@src/pages/Home"));
-const LoginPage = lazy(() => import("@src/pages/Login"));
-const RegisterPage = lazy(() => import("@src/pages/Register"));
+function lazyLoad(name: string) {
+  return lazy(() => import(`@src/pages/${name}`));
+}
+
+const HomePage = lazyLoad("Home");
+const LoginPage = lazyLoad("Login");
+const RegisterPage = lazyLoad("Register");
 
 const routes = [
   {

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { IRootSate } from "@store/root";
@@ -16,18 +16,20 @@ function Home() {
   const handleLogout = async () => {
     let res = await userLogout();
     console.log(res);
-
     histroy.replace("/login");
   };
+  
   const handleRefresh = async () => {
     const res = await userTokenRefresh();
     console.log(res);
   };
+
   useEffect(() => {
     userInfoGet()
       .then((res) => console.log(res))
       .catch((err) => {
         console.log(",,,,", err);
+        histroy.replace("/login");
       });
     return () => {};
   }, []);
