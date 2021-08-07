@@ -7,6 +7,7 @@ function lazyLoad(name: string) {
 const HomePage = lazyLoad("Home");
 const LoginPage = lazyLoad("Login");
 const RegisterPage = lazyLoad("Register");
+const D3 = lazyLoad("D3");
 
 const routes = [
   {
@@ -21,6 +22,10 @@ const routes = [
   {
     path: "/register",
     component: RegisterPage,
+  },
+  {
+    path: "/D3",
+    component: D3,
   },
 ];
 

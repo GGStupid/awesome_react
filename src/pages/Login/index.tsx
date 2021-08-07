@@ -1,4 +1,10 @@
-import React, { ChangeEvent, FormEvent, ReactElement, useState } from "react";
+import React, {
+  ChangeEvent,
+  FormEvent,
+  ReactElement,
+  useEffect,
+  useState,
+} from "react";
 import { userLogin } from "@services/userServices";
 import {
   Avatar,
@@ -20,6 +26,7 @@ import Toast from "@src/components/Toast";
 import { useHistory } from "react-router";
 import { useDispatch } from "react-redux";
 import { initUserAction } from "@src/store/user/actions";
+import { useDebounce } from "@src/customHooks/useDebounce";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -76,6 +83,17 @@ function Login(): ReactElement {
       histroy.push("/");
     }
   };
+  const [counter2, setcounter2] = useState(1);
+  let [counter, setcount] = useState(1);
+  const handleTest = useDebounce(() => {
+    setcount((x) => x + 1);
+  }, 3000);
+  useEffect(() => {
+    const t = setInterval(() => {
+      setcounter2((x) => x + 1);
+    }, 500);
+    return clearInterval.bind(undefined, t);
+  }, []);
 
   return (
     <Grid container component="main" className={classes.root}>
@@ -86,8 +104,8 @@ function Login(): ReactElement {
           <Avatar className={classes.avatar}>
             <LockOutlinedIcon />
           </Avatar>
-          <Typography component="h1" variant="h5">
-            登录
+          <Typography component="h1" variant="h5" onClick={handleTest}>
+            登录 {counter} {counter2}
           </Typography>
           <form className={classes.form} noValidate onSubmit={handleLogin}>
             <TextField
